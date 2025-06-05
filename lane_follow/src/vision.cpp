@@ -46,21 +46,16 @@ void CamSubNode::mysub_callback(const sensor_msgs::msg::CompressedImage::SharedP
     Mat gray, binary, resizedBinary;
     cvtColor(frame, gray, COLOR_BGR2GRAY);
 
-    Scalar meanBrightness = mean(gray);
-    gray = gray + (100 - meanBrightness[0]);
+    Rect roi(0, gray.rows * 3 / 4, gray.cols, gray.rows / 4);
+    resizedBinary = gray(roi);
 
-    GaussianBlur(gray, gray, Size(5, 5), 1.5);
-
-    threshold(gray, binary, 140, 255, THRESH_BINARY);
-
-    Rect roi(0, frame.rows * 3 / 4, frame.cols, frame.rows / 4);
-    resizedBinary = binary(roi);
+    threshold(resizedBinary, binary, 0, 255, THRESH_BINARY | THRESH_OTSU);
 
     Mat labelImage, stats, centroids;
-    int nLabels = connectedComponentsWithStats(resizedBinary, labelImage, stats, centroids, 8, CV_32S);
+    int nLabels = connectedComponentsWithStats(binary, labelImage, stats, centroids, 8, CV_32S);
 
     Mat colorBinary;
-    cvtColor(resizedBinary, colorBinary, COLOR_GRAY2BGR);
+    cvtColor(binary, colorBinary, COLOR_GRAY2BGR);
 
     vector<Point> lineCenters;
     for (int i = 1; i < nLabels; i++) {
