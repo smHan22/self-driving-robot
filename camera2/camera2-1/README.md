@@ -1,4 +1,4 @@
-# Jetson의 영상을 ROS2를 사용하여 WSL에서 시각화하는 패키지
+# Camera 2-1
 
 ➨ Jetson의 CSI 카메라로부터 실시간 영상을 캡처하고 ROS2를 통해 토픽으로 전송
 ➨ WSL에서 ROS2 토픽을 Subscribe하여 영상 수신 -> 영상 처리 및 시각화
