@@ -1,4 +1,4 @@
-# 섭스크라이버 노드에서 구독한 영상을 동영상 파일(mp4)로 저장하는 패키지
+# Camera 1-2
 
 ➨ Jetson 내부에서 카메라 영상을 ROS2를 통해 Publish한 뒤, Jetson 내 Subscriber 노드에서 해당 영상을 수신하고 OpenCV로 이진화 처리 후 외부 PC로 GStreamer 스트리밍 전송
 ➨ Jetson 내부에 영상 저장
