@@ -8,13 +8,21 @@
 
 # Jetson (카메라 Publisher 노드)
 ```
-⦁ GStreamer를 사용하여 Jetson 카메라 영상 입력
-⦁ OpenCV를 통해 프레임 캡처
+⦁ GStreamer를 통해 카메라 영상 읽기
+⦁ OpenCV로 프레임 처리
 ⦁ sensor_msgs::msg::CompressedImage 형식으로 변환
-⦁ ROS2 토픽 /image/compressed로 Publish
+⦁ ROS2 토픽 image/Compressed로 Publish
 ```
 
-# Jetson (카메라 Subscriber 노드)
+# Jetson (Subscriber 영상 전송 노드)
 ```
-⦁ GStreamer를 사용하여 Jetson 카메라 영상 
+⦁ ROS2 토픽 image/compressed 수신
+⦁ OpenCV로 디코딩 및 이진화
+⦁ GStreamer를 통해 PC로 UDP 영상 스트리밍 전송
+```
+
+# PC (영상 확인)
+```
+⦁ Jetson에서 전송한 UDP 영상 수신
+⦁ GStreamer 기반 수신 파이프라인을 사용해 영상 확인 가능
 ```
