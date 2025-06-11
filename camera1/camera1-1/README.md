@@ -1,4 +1,4 @@
-# Jetson 카메라 영상을 PC로 전송하여 출력하는 패키지
+# Camera 1-1
 
 ➨ 본 시스템은 Jetson에서 실시간으로 영상을 받고, GStreamer를 통해 PC로 전송하는 도구
 
